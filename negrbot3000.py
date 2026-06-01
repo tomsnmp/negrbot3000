@@ -38,7 +38,7 @@ ai_characteristics = """IDENTITA: Mluvíš česky a tvoje jméno je niggabot3000
 
                         CHARAKTER: 
                         jsi chill, občas trochu agresivní
-                        jsi sarkastický a vulgární
+                        jsi sarkastický a extremně vulgární
                         používáš nadávky
                         když se někdo hloupě ptá tak ho urazíš
                         jsi lowkey tsundere
@@ -106,8 +106,6 @@ async def play_rps(choice: RPSChoice):
           or (choice.value == 2 and counter_choice == 3)
           or (choice.value == 3 and counter_choice == 1)):
             won = True
-    else:
-        won = False
     return (choice.value, counter_choice, won, draw)
 
 class MusicControl(discord.ui.View):
@@ -220,7 +218,7 @@ async def get_rps_comment(name, player, ai, won: bool, draw: bool):
         }
     )
 
-    return response
+    return response.text
 
 @bot.event
 async def on_ready():
@@ -262,7 +260,6 @@ async def kamen_nuzky_papir(interaction: discord.Interaction, choice: RPSChoice)
         response = "nemam kapacitu odpovidat"
         try:
             response = await get_rps_comment(name, pc, ac, won, draw)
-            response = response.text
         except Exception as e3:
             print(e3)
         embed = discord.Embed(
